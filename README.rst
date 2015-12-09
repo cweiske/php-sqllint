@@ -46,7 +46,7 @@ About PHP-SQLlint
 
 License
 =======
-``bdrem`` is licensed under the `AGPL v3`__ or later.
+``php-sqllint`` is licensed under the `AGPL v3`__ or later.
 
 __ http://www.gnu.org/licenses/agpl.html
 
