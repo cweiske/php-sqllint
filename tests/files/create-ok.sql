@@ -1,0 +1,4 @@
+CREATE TABLE test (
+    uid INT(11) DEFAULT 0 NOT NULL,
+    pid INT(11) DEFAULT 0 NOT NULL
+);

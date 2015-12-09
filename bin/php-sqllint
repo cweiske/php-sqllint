@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+use SqlParser\Parser;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+if ($argc < 2) {
+    echo "SQL file name missing\n";
+    exit(1);
+}
+$file = $argv[1];
+if ($file == '') {
+    echo "SQL file name empty\n";
+    exit(1);
+}
+if (!file_exists($file)) {
+    echo "SQL file does not exist\n";
+    exit(1);
+}
+
+$sql = file_get_contents($file);
+if (trim($sql) == '') {
+    echo "SQL file empty\n";
+    exit(1);
+}
+
+$parser = new Parser($sql);
+
+if (count($parser->errors) == 0) {
+    echo "No syntax errors detected\n";
+    exit(0);
+}
+
+$lines = array(1 => 0);
+$pos = -1;
+$line = 1;
+while (false !== $pos = strpos($sql, "\n", ++$pos)) {
+    $lines[++$line] = $pos;
+}
+
+echo "Syntax errors found\n";
+foreach ($parser->errors as $error) {
+    reset($lines);
+    $line = 1;
+    while (next($lines) && $error->token->position >= current($lines)) {
+        ++$line;
+    }
+    $col = $error->token->position - $lines[$line];
+
+    /** @var SqlParser\Exceptions\ParserException $error) */
+    echo 'Line ' . $line
+        . ' col ' . $col
+        //FIXME: ->token or ->value?
+        . ' at "' . niceToken($error->token->token) . '":'
+        . ' ' . $error->getMessage()
+        . "\n";
+    //var_dump($error->token);
+}
+
+function niceToken($str)
+{
+    return str_replace(
+        ["\n", "\r", "\t"],
+        ['\n', '\r', '\t'],
+        $str
+    );
+}
+?>
