@@ -13,7 +13,7 @@ Usage
 =====
 ::
 
-    $ ./bin/php-sqllint tests/files/create-missingcomma.sql 
+    $ php-sqllint tests/files/create-missingcomma.sql 
     Checking SQL syntax of tests/files/create-missingcomma.sql
      Line 3, col 5 at "pid": A comma or a closing bracket was expected.
      Line 3, col 13 at "11": Unexpected beginning of statement.
@@ -21,10 +21,20 @@ Usage
 
 Emacs mode::
 
-    $ ./bin/php-sqllint -r emacs tests/files/create-noname.sql 
+    $ php-sqllint -r emacs tests/files/create-noname.sql 
     tests/files/create-noname.sql:1.12:Error: The name of the entity was expected.
     tests/files/create-noname.sql:1.13:Error: A closing bracket was expected.
     tests/files/create-noname.sql:1.13:Error: At least one column definition was expected.
+
+
+====
+Bugs
+====
+Does ``php-sqllint`` not detect a syntax error, or doesn't support a certain
+SQL statement?
+Then please report a bug at `udan11/sql-parser`__.
+
+__ https://github.com/udan11/sql-parser
 
 
 ============
@@ -38,6 +48,29 @@ __ https://github.com/udan11/sql-parser
 __ https://www.phpmyadmin.net/
 
 
+Dependency installation
+=======================
+::
+
+    $ composer install
+
+Now you can use ``./bin/php-sqllint`` without building the phar yourself.
+
+
+========
+Building
+========
+You'll need `phing`__, the PHP build tool::
+
+    $ phing
+
+__ https://www.phing.info/
+
+The result are ``.phar`` files in ``dist/`` directory that you can execute::
+
+    $ ./dist/php-sqllint-0.0.1.phar tests/files/create-noname.sql 
+    Checking SQL syntax of tests/files/create-noname.sql
+     Line 1, col 12 at "(": The name of the entity was expected.
 
 
 =================
@@ -53,6 +86,8 @@ __ http://www.gnu.org/licenses/agpl.html
 
 Homepage
 ========
+Home page
+   http://cweiske.de/php-sqllint.htm
 Source code
    http://git.cweiske.de/php-sqllint.git
 

@@ -1,5 +1,6 @@
 {
     "require": {
-        "udan11/sql-parser": "^3.0"
+        "udan11/sql-parser": "^3.0",
+        "pear/console_commandline": "^1.2"
     }
 }
