@@ -115,7 +115,7 @@ class Cli
     {
         $parser = new \Console_CommandLine();
         $parser->description = 'php-sqllint';
-        $parser->version = '0.0.1';
+        $parser->version = '0.0.2';
 
         $parser->addOption(
             'renderer',
