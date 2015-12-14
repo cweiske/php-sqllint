@@ -23,6 +23,9 @@ namespace phpsqllint;
  */
 class Renderer_Text implements Renderer
 {
+    protected $fileshown = false;
+    protected $filename = null;
+
     /**
      * Begin syntax check output rendering
      *
@@ -32,7 +35,19 @@ class Renderer_Text implements Renderer
      */
     public function startRendering($filename)
     {
-        echo "Checking SQL syntax of " . $filename . "\n";
+        $this->filename  = $filename;
+        $this->fileshown = false;
+    }
+
+
+    protected function showFile()
+    {
+        if ($this->fileshown) {
+            return;
+        }
+
+        echo "Checking SQL syntax of " . $this->filename . "\n";
+        $this->fileshown = true;
     }
 
     /**
@@ -47,6 +62,7 @@ class Renderer_Text implements Renderer
      */
     public function displayError($msg, $token, $line, $col)
     {
+        $this->showFile();
         echo ' Line ' . $line
             . ', col ' . $col
             . ' at "' . $this->niceToken($token) . '":'
@@ -61,7 +77,9 @@ class Renderer_Text implements Renderer
      */
     public function finishOk()
     {
-        echo " OK\n";
+        if ($this->fileshown) {
+            echo " OK\n";
+        }
     }
 
     /**
