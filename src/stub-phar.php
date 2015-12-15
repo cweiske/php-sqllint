@@ -12,6 +12,7 @@
  * @license   http://www.gnu.org/licenses/agpl.html GNU AGPL v3
  * @link      http://cweiske.de/php-sqllint.htm
  */
-require 'phar://' . __FILE__ . '/bin/phar-php-sqllint.php';
+Phar::mapPhar('php-sqllint.phar');
+require 'phar://php-sqllint.phar/bin/phar-php-sqllint.php';
 __HALT_COMPILER();
 ?>
