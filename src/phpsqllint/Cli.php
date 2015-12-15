@@ -36,7 +36,7 @@ class Cli
     public function run()
     {
         try {
-            $parser = $this->loadParameters();
+            $parser = $this->loadOptionParser();
             $files  = $this->parseParameters($parser);
 
             $allfine = true;
@@ -66,7 +66,11 @@ class Cli
     {
         $this->renderer->startRendering($filename);
 
-        $sql = file_get_contents($filename);
+        if ($filename == '-') {
+            $sql = file_get_contents('php://stdin');
+        } else {
+            $sql = file_get_contents($filename);
+        }
         if (trim($sql) == '') {
             $this->renderer->displayError('SQL file empty', '', 0, 0);
             return false;
@@ -111,11 +115,12 @@ class Cli
      *
      * @return \Console_CommandLine CLI option parser
      */
-    protected function loadParameters()
+    protected function loadOptionParser()
     {
         $parser = new \Console_CommandLine();
         $parser->description = 'php-sqllint';
         $parser->version = '0.0.2';
+        $parser->avoid_reading_stdin = true;
 
         $parser->addOption(
             'renderer',
@@ -136,7 +141,8 @@ class Cli
         $parser->addArgument(
             'sql_files',
             array(
-                'multiple' => true
+                'description' => 'SQL files, "-" for stdin',
+                'multiple'    => true
             )
         );
 
@@ -160,6 +166,9 @@ class Cli
             $this->renderer = new $rendClass();
 
             foreach ($result->args['sql_files'] as $filename) {
+                if ($filename == '-') {
+                    continue;
+                }
                 if (!file_exists($filename)) {
                     throw new \Exception('File does not exist: ' . $filename);
                 }
