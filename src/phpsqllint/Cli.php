@@ -28,6 +28,9 @@ class Cli
 {
     protected $renderer;
 
+    protected $format = false;
+    protected $colors = false;
+
     /**
      * Start processing.
      *
@@ -41,7 +44,11 @@ class Cli
 
             $allfine = true;
             foreach ($files as $filename) {
-                $allfine &= $this->checkFile($filename);
+                if ($this->format) {
+                    $allfine &= $this->formatFile($filename);
+                } else {
+                    $allfine &= $this->checkFile($filename);
+                }
             }
 
             if ($allfine == true) {
@@ -65,14 +72,8 @@ class Cli
     public function checkFile($filename)
     {
         $this->renderer->startRendering($filename);
-
-        if ($filename == '-') {
-            $sql = file_get_contents('php://stdin');
-        } else {
-            $sql = file_get_contents($filename);
-        }
-        if (trim($sql) == '') {
-            $this->renderer->displayError('SQL file empty', '', 0, 0);
+        $sql = $this->loadSql($filename);
+        if ($sql === false) {
             return false;
         }
 
@@ -111,6 +112,38 @@ class Cli
     }
 
     /**
+     * Reformat the given file
+     */
+    protected function formatFile($filename)
+    {
+        $this->renderer->startRendering($filename);
+        $sql = $this->loadSql($filename);
+        if ($sql === false) {
+            return false;
+        }
+
+        $options = array(
+            //FIXME: automatically detect if the shell/tool supports colors
+            'type' => $this->colors ? 'cli' : 'text'
+        );
+        echo \SqlParser\Utils\Formatter::format($sql, $options) . "\n";
+    }
+
+    protected function loadSql($filename)
+    {
+        if ($filename == '-') {
+            $sql = file_get_contents('php://stdin');
+        } else {
+            $sql = file_get_contents($filename);
+        }
+        if (trim($sql) == '') {
+            $this->renderer->displayError('SQL file empty', '', 0, 0);
+            return false;
+        }
+        return $sql;
+    }
+
+    /**
      * Load parameters for the CLI option parser.
      *
      * @return \Console_CommandLine CLI option parser
@@ -122,6 +155,26 @@ class Cli
         $parser->version = '0.0.2';
         $parser->avoid_reading_stdin = true;
 
+        $parser->addOption(
+            'format',
+            array(
+                'short_name'  => '-f',
+                'long_name'   => '--format',
+                'description' => 'Reformat SQL instead of checking',
+                'action'      => 'StoreTrue',
+                'default'     => false,
+            )
+        );
+        $parser->addOption(
+            'colors',
+            array(
+                'short_name'  => '-c',
+                'long_name'   => '--colors',
+                'description' => 'Use colors in formatting output',
+                'action'      => 'StoreTrue',
+                'default'     => false,
+            )
+        );
         $parser->addOption(
             'renderer',
             array(
@@ -164,6 +217,9 @@ class Cli
             $rendClass = '\\phpsqllint\\Renderer_'
                 . ucfirst($result->options['renderer']);
             $this->renderer = new $rendClass();
+
+            $this->format = $result->options['format'];
+            $this->colors = $result->options['colors'];
 
             foreach ($result->args['sql_files'] as $filename) {
                 if ($filename == '-') {

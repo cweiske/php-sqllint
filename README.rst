@@ -6,12 +6,15 @@ Command line tool to validate (syntax check) SQL files.
 Primarily for MySQL ``.sql`` files.
 
 Can be used in git pre-commit hooks to catch errors.
+Use it from your shell, offline and without any SQL server.
+
+You can also use it to format SQL queries.
 
 
 =====
 Usage
 =====
-::
+Syntax check::
 
     $ php-sqllint tests/files/create-missingcomma.sql 
     Checking SQL syntax of tests/files/create-missingcomma.sql
@@ -25,6 +28,23 @@ Emacs mode::
     tests/files/create-noname.sql:1.12:Error: The name of the entity was expected.
     tests/files/create-noname.sql:1.13:Error: A closing bracket was expected.
     tests/files/create-noname.sql:1.13:Error: At least one column definition was expected.
+
+
+Formatting::
+
+    $ php-sqllint --format tests/files/select-unformatted.sql
+    SELECT
+      id,
+      NAME,
+      url
+    FROM
+      users
+    WHERE
+      DATE > NOW() AND id != 0
+    ORDER BY NAME
+    LIMIT 10
+
+You can enable ANSI coloring by passing the ``--colors`` option.
 
 
 ====
