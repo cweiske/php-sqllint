@@ -168,11 +168,17 @@ class Cli
         $parser->addOption(
             'colors',
             array(
-                'short_name'  => '-c',
-                'long_name'   => '--colors',
+                'long_name'   => '--color',
                 'description' => 'Use colors in formatting output',
                 'action'      => 'StoreTrue',
-                'default'     => false,
+            )
+        );
+        $parser->addOption(
+            'nocolors',
+            array(
+                'long_name'   => '--nocolor',
+                'description' => 'Disable colors in formatting output',
+                'action'      => 'StoreTrue',
             )
         );
         $parser->addOption(
@@ -219,7 +225,21 @@ class Cli
             $this->renderer = new $rendClass();
 
             $this->format = $result->options['format'];
-            $this->colors = $result->options['colors'];
+
+            if ($result->options['colors'] !== null) {
+                $this->colors = $result->options['colors'];
+            } else if ($result->options['nocolors'] !== null) {
+                $this->colors = !$result->options['nocolors'];
+            } else {
+                //default coloring to enabled, except
+                // when piping | to another tool
+                $this->colors = true;
+                if (function_exists('posix_isatty')
+                    && !posix_isatty(STDOUT)
+                ) {
+                    $this->colors = false;
+                }
+            }
 
             foreach ($result->args['sql_files'] as $filename) {
                 if ($filename == '-') {
