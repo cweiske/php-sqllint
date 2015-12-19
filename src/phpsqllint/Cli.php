@@ -29,7 +29,14 @@ class Cli
     protected $renderer;
 
     protected $format = false;
-    protected $colors = false;
+
+    /**
+     * What syntax highlighting mode should be used
+     *
+     * none, ansi, html
+     */
+    protected $highlight = 'none';
+
 
     /**
      * Start processing.
@@ -122,9 +129,13 @@ class Cli
             return false;
         }
 
+        $typeMap = array(
+            'none' => 'text',
+            'ansi' => 'cli',
+            'html' => 'html',
+        );
         $options = array(
-            //FIXME: automatically detect if the shell/tool supports colors
-            'type' => $this->colors ? 'cli' : 'text'
+            'type' => $typeMap[$this->highlight],
         );
         echo \SqlParser\Utils\Formatter::format($sql, $options) . "\n";
     }
@@ -166,19 +177,20 @@ class Cli
             )
         );
         $parser->addOption(
-            'colors',
+            'highlight',
             array(
-                'long_name'   => '--color',
-                'description' => 'Use colors in formatting output',
-                'action'      => 'StoreTrue',
-            )
-        );
-        $parser->addOption(
-            'nocolors',
-            array(
-                'long_name'   => '--nocolor',
-                'description' => 'Disable colors in formatting output',
-                'action'      => 'StoreTrue',
+                'short_name'  => '-h',
+                'long_name'   => '--highlight',
+                'description' => 'Highlighting mode (when using --format)',
+                'action'      => 'StoreString',
+                'choices'     => array(
+                    'none',
+                    'ansi',
+                    'html',
+                    'auto',
+                ),
+                'default' => 'auto',
+                'add_list_option' => true,
             )
         );
         $parser->addOption(
@@ -226,18 +238,20 @@ class Cli
 
             $this->format = $result->options['format'];
 
-            if ($result->options['colors'] !== null) {
-                $this->colors = $result->options['colors'];
-            } else if ($result->options['nocolors'] !== null) {
-                $this->colors = !$result->options['nocolors'];
-            } else {
-                //default coloring to enabled, except
-                // when piping | to another tool
-                $this->colors = true;
-                if (function_exists('posix_isatty')
-                    && !posix_isatty(STDOUT)
-                ) {
-                    $this->colors = false;
+            $this->highlight = $result->options['highlight'];
+            if ($this->highlight == 'auto') {
+                if (php_sapi_name() == 'cli') {
+                    //default coloring to enabled, except
+                    // when piping | to another tool
+                    $this->highlight = 'ansi';
+                    if (function_exists('posix_isatty')
+                        && !posix_isatty(STDOUT)
+                    ) {
+                        $this->highlight = 'none';
+                    }
+                } else {
+                    //no idea where we are, so do not highlight
+                    $this->highlight = 'none';
                 }
             }
 

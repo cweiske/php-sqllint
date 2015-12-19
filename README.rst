@@ -44,7 +44,20 @@ Formatting::
     ORDER BY NAME
     LIMIT 10
 
-You can enable ANSI coloring by passing the ``--colors`` option.
+
+Syntax highlighting
+===================
+ANSI colors are applied automatically when not piping; you can use the
+``--highlight`` option to override the automatism.
+
+``--highlight`` option values:
+
+``none``
+  No highlighting. Use it to disable automatic highlighting
+``ansi``
+  ANSI escape codes for your shell
+``html``
+  HTML tags
 
 
 ====
@@ -80,6 +93,15 @@ Now you can use ``./bin/php-sqllint`` without building the phar yourself.
 ========
 Building
 ========
+
+Preparation
+===========
+- Adjust version number in ``src/phpsqllint/Cli.php``
+- Adjust version number in ``build.xml``
+
+
+Create the release
+==================
 You'll need `phing`__, the PHP build tool::
 
     $ phing
