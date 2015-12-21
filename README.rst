@@ -96,8 +96,7 @@ Building
 
 Preparation
 ===========
-- Adjust version number in ``src/phpsqllint/Cli.php``
-- Adjust version number in ``build.xml``
+1. Write new version number into ``VERSION``
 
 
 Create the release

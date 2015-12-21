@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="php-sqllint" default="phar" basedir=".">
 
- <property name="version"  value="0.0.2" />
+ <property name="version"  value="dev" />
+ <loadfile property="version" file="VERSION">
+  <filterchain>
+   <striplinebreaks />
+  </filterchain>
+ </loadfile>
+
  <property name="pharfile" value="${phing.dir}/dist/${phing.project.name}-${version}.phar" />
  <property name="pharfilebz2" value="${phing.dir}/dist/${phing.project.name}-${version}.bz2.phar" />
  <property name="libdir" value="${phing.dir}/lib"/>
@@ -12,6 +18,7 @@
   <include name="src/**"/>
 
   <include name="README.rst"/>
+  <include name="VERSION"/>
 
   <include name="vendor/autoload.php"/>
   <include name="vendor/composer/*.php"/>

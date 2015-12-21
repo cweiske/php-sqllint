@@ -163,8 +163,13 @@ class Cli
     {
         $parser = new \Console_CommandLine();
         $parser->description = 'php-sqllint';
-        $parser->version = '0.0.2';
+        $parser->version = 'dev';
         $parser->avoid_reading_stdin = true;
+
+        $versionFile = __DIR__ . '/../../VERSION';
+        if (file_exists($versionFile)) {
+            $parser->version = trim(file_get_contents($versionFile));
+        }
 
         $parser->addOption(
             'format',
