@@ -70,6 +70,24 @@ Then please report a bug at `udan11/sql-parser`__.
 __ https://github.com/udan11/sql-parser
 
 
+========
+Download
+========
+The download files are equipped with all dependencies.
+Just download and run.
+
+Version 0.1.0, 2015-12-21
+
+- `php-sqllint-0.1.0.bz2.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.0.bz2.phar>`__
+
+  - 178 kiB
+  - SHA256: ``d04c62c4516d0d26a4fe84a33690c0ac04b7a8aa98f9a019d5bd911eff8f7fdf``
+- `php-sqllint-0.1.0.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.0.phar>`__
+
+  - 621 kiB
+  - SHA256: ``b68da880cef475abdbc4bcb0918a2dafc4f893727e3e1290172aad94b9409480``
+
+
 ============
 Dependencies
 ============
@@ -137,4 +155,6 @@ Source code
 
 Author
 ======
-Written by Christian Weiske, cweiske@cweiske.de
+Written by `Christian Weiske`__, cweiske+php-sqllint@cweiske.de
+
+__ http://cweiske.de/
