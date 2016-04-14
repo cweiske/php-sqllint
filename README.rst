@@ -76,16 +76,16 @@ Download
 The download files are equipped with all dependencies.
 Just download and run.
 
-Version 0.1.0, 2015-12-21
+Version 0.1.1, 2016-04-14
 
-- `php-sqllint-0.1.0.bz2.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.0.bz2.phar>`__
+- `php-sqllint-0.1.1.bz2.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.1.bz2.phar>`__
 
   - 178 kiB
-  - SHA256: ``d04c62c4516d0d26a4fe84a33690c0ac04b7a8aa98f9a019d5bd911eff8f7fdf``
-- `php-sqllint-0.1.0.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.0.phar>`__
+  - SHA256: ``c1902d79636e112715682260c21980ac51059688b7fb1a8eda4a8ca70226e56b``
+- `php-sqllint-0.1.1.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.1.phar>`__
 
   - 621 kiB
-  - SHA256: ``b68da880cef475abdbc4bcb0918a2dafc4f893727e3e1290172aad94b9409480``
+  - SHA256: ``2665a0c1cf8997c326a90ebded5a7848a1d60506d98158b391a8e546afa2ca20``
 
 
 ============
