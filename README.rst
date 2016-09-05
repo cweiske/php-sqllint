@@ -65,9 +65,9 @@ Bugs
 ====
 Does ``php-sqllint`` not detect a syntax error, or doesn't support a certain
 SQL statement?
-Then please report a bug at `udan11/sql-parser`__.
+Then please report a bug at `phpmyadmin/sql-parser`__.
 
-__ https://github.com/udan11/sql-parser
+__ https://github.com/phpmyadmin/sql-parser
 
 
 ========
