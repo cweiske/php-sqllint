@@ -95,7 +95,7 @@ Dependencies
 - `udan11's SqlParser`__, which is used by `phpMyAdmin`__
 
 __ http://pear.php.net/package/Console_CommandLine
-__ https://github.com/udan11/sql-parser
+__ https://github.com/phpmyadmin/sql-parser
 __ https://www.phpmyadmin.net/
 
 
