@@ -92,10 +92,10 @@ Version 0.1.1, 2016-04-14
 Dependencies
 ============
 - PEAR's `Console_Commandline`__
-- `udan11's SqlParser`__, which is used by `phpMyAdmin`__
+- `phpMyAdmin's SqlParser`__, which is used by `phpMyAdmin`__
 
 __ http://pear.php.net/package/Console_CommandLine
-__ https://github.com/udan11/sql-parser
+__ https://github.com/phpmyadmin/sql-parser
 __ https://www.phpmyadmin.net/
 
 
