@@ -76,27 +76,20 @@ Download
 The download files are equipped with all dependencies.
 Just download and run.
 
-Version 0.1.1, 2016-04-14
+.. LATESTRELEASE
 
-- `php-sqllint-0.1.1.bz2.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.1.bz2.phar>`__
-
-  - 178 kiB
-  - SHA256: ``c1902d79636e112715682260c21980ac51059688b7fb1a8eda4a8ca70226e56b``
-- `php-sqllint-0.1.1.phar <http://cweiske.de/download/php-sqllint/php-sqllint-0.1.1.phar>`__
-
-  - 621 kiB
-  - SHA256: ``2665a0c1cf8997c326a90ebded5a7848a1d60506d98158b391a8e546afa2ca20``
+See `php-sqllint downloads page <http://cweiske.de/php-sqllint-download.htm>`_
+for all released versions.
 
 
 ============
 Dependencies
 ============
 - PEAR's `Console_Commandline`__
-- `phpMyAdmin's SqlParser`__, which is used by `phpMyAdmin`__
+- `phpMyAdmin's SqlParser`__
 
 __ http://pear.php.net/package/Console_CommandLine
 __ https://github.com/phpmyadmin/sql-parser
-__ https://www.phpmyadmin.net/
 
 
 Dependency installation

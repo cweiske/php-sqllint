@@ -1,6 +1,4 @@
-/composer.lock
 /vendor
 /README.html
 /dist
 /bin/phar-php-sqllint.php
-VERSION
