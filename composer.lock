@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1c18f83b6e7cd2794ed46ab1259603cf",
-    "content-hash": "48867997935b86e96d572b0c195542ef",
+    "hash": "642c0759e68495342f0e4ec0a8b45575",
+    "content-hash": "e52fa298a0c5ce2ff75067ab99b00ce7",
     "packages": [
         {
             "name": "pear/console_commandline",
@@ -117,25 +117,31 @@
         },
         {
             "name": "phpmyadmin/sql-parser",
-            "version": "v3.4.10",
+            "version": "v4.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmyadmin/sql-parser.git",
-                "reference": "5c0905149b38f3c68a5f0545efdcc33c687459ee"
+                "reference": "deac47217144b21056271674533b289239e1b279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/5c0905149b38f3c68a5f0545efdcc33c687459ee",
-                "reference": "5c0905149b38f3c68a5f0545efdcc33c687459ee",
+                "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/deac47217144b21056271674533b289239e1b279",
+                "reference": "deac47217144b21056271674533b289239e1b279",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "php": ">=5.3.0"
             },
+            "conflict": {
+                "phpmyadmin/motranslator": "<3.0"
+            },
             "require-dev": {
-                "phpunit/php-code-coverage": "~2.0 || ~3.0",
-                "phpunit/phpunit": "~4.8 || ~5.1"
+                "phpunit/php-code-coverage": "*",
+                "phpunit/phpunit": "~4.8 || ~5.7"
+            },
+            "suggest": {
+                "phpmyadmin/motranslator": "Translate messages to your favorite locale"
             },
             "bin": [
                 "bin/highlight-query",
@@ -144,7 +150,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SqlParser\\": "src"
+                    "PhpMyAdmin\\SqlParser\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -166,7 +172,7 @@
                 "parser",
                 "sql"
             ],
-            "time": "2016-10-03 16:28:09"
+            "time": "2017-07-12 14:54:33"
         }
     ],
     "packages-dev": [],

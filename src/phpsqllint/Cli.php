@@ -11,7 +11,7 @@
  * @link     http://cweiske.de/php-sqllint.htm
  */
 namespace phpsqllint;
-use SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Parser;
 
 require_once 'Console/CommandLine.php';
 
@@ -84,7 +84,7 @@ class Cli
             return false;
         }
 
-        $parser = new \SqlParser\Parser($sql);
+        $parser = new \PhpMyAdmin\SqlParser\Parser($sql);
         if (count($parser->errors) == 0) {
             $this->renderer->finishOk();
             return true;
@@ -98,7 +98,7 @@ class Cli
         }
 
         foreach ($parser->errors as $error) {
-            /* @var SqlParser\Exceptions\ParserException $error) */
+            /* @var PhpMyAdmin\SqlParser\Exceptions\ParserException $error) */
             reset($lines);
             $line = 1;
             while (next($lines) && $error->token->position >= current($lines)) {
@@ -137,7 +137,7 @@ class Cli
         $options = array(
             'type' => $typeMap[$this->highlight],
         );
-        echo \SqlParser\Utils\Formatter::format($sql, $options) . "\n";
+        echo \PhpMyAdmin\SqlParser\Utils\Formatter::format($sql, $options) . "\n";
     }
 
     protected function loadSql($filename)
