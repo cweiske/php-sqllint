@@ -1,5 +1,10 @@
 2017-07-27  Christian Weiske  <cweiske@cweiske.de>
 
+	* Re-order autoloader calls, fixes #11
+	* Release 0.2.1
+
+2017-07-27  Christian Weiske  <cweiske@cweiske.de>
+
 	* Update to phpmyadmin/sql-parser 4.1.9
 	* Release 0.2.0
 
