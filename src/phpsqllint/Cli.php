@@ -13,8 +13,6 @@
 namespace phpsqllint;
 use PhpMyAdmin\SqlParser\Parser;
 
-require_once 'Console/CommandLine.php';
-
 /**
  * Command line interface
  *
