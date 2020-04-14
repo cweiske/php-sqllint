@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "642c0759e68495342f0e4ec0a8b45575",
-    "content-hash": "e52fa298a0c5ce2ff75067ab99b00ce7",
+    "content-hash": "b75c33e07bfbe6757463c7919f4adff6",
     "packages": [
         {
             "name": "pear/console_commandline",
@@ -58,7 +57,7 @@
             "keywords": [
                 "console"
             ],
-            "time": "2016-07-14 06:00:57"
+            "time": "2016-07-14T06:00:57+00:00"
         },
         {
             "name": "pear/pear_exception",
@@ -113,7 +112,7 @@
             "keywords": [
                 "exception"
             ],
-            "time": "2015-02-10 20:07:52"
+            "time": "2015-02-10T20:07:52+00:00"
         },
         {
             "name": "phpmyadmin/sql-parser",
@@ -172,7 +171,7 @@
                 "parser",
                 "sql"
             ],
-            "time": "2017-07-12 14:54:33"
+            "time": "2017-07-12T14:54:33+00:00"
         }
     ],
     "packages-dev": [],
@@ -181,6 +180,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": []
+    "platform": {
+        "ext-mbstring": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
