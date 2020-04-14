@@ -1,3 +1,8 @@
+2020-04-14  Christian Weiske  <cweiske@cweiske.de>
+
+	* Fix reported error position in SQL with unicode characters (#14)
+	* Release 0.2.3
+
 2018-03-02  Christian Weiske  <cweiske@cweiske.de>
 
 	* Fix autoloading on composer installation
