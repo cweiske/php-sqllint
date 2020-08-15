@@ -70,6 +70,12 @@ Then please report a bug at `phpmyadmin/sql-parser`__.
 __ https://github.com/phpmyadmin/sql-parser
 
 
+======================
+Install using composer
+======================
+Run ``composer require cweiske/php-sqllint``, the package is hosted on `packagist <https://packagist.org/packages/cweiske/php-sqllint>`__
+
+
 ========
 Download
 ========
